@@ -1,0 +1,11 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: php-apache-kn
+spec:
+  template:
+    spec:
+      containers:
+      - image: k8s.gcr.io/hpa-example
+        ports:
+        - containerPort: 80 # we only need this because port != 8080

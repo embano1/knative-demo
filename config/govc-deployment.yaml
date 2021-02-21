@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: govc
+    role: vsphere-pods
+  name: govc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: govc
+      role: vsphere-pods
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: govc
+        role: vsphere-pods
+    spec:
+      containers:
+        - command: ["/usr/bin/top"]
+          image: embano1/vcsim:0.24.0
+          name: govc
+          tty: true
+          resources: {}

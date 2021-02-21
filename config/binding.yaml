@@ -1,0 +1,19 @@
+apiVersion: sources.tanzu.vmware.com/v1alpha1
+kind: VSphereBinding
+metadata:
+  name: vsphere-pods
+spec:
+  # Apply to every Pod labeled "role: vsphere-pods" in
+  # this namespace
+  subject:
+    apiVersion: apps/v1
+    kind: Deployment
+    selector:
+      matchLabels:
+        role: vsphere-pods
+
+  # The address and credentials for vSphere.
+  address: https://10.161.153.226
+  skipTLSVerify: true
+  secretRef:
+    name: vsphere-credentials
